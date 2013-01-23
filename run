@@ -1,8 +1,8 @@
 #!/bin/sh
 [ -f ~/opt/bin/hoisted.jar ] || wget -O ~/opt/bin/hoisted.jar https://howto.telegr.am/download/hoisted.jar
 echo $(dirname $0)
-#java -jar ~/opt/bin/hoisted.jar -server $(dirname $0) > run.log &
-java -jar ~/opt/bin/hoisted.jar -server ~/Projects/onGithub/my-blog > run.log &
+dir=$( cd `dirname $0` >/dev/null; pwd )
+java -jar ~/opt/bin/hoisted.jar -server $dir > run.log &
 echo "Hoisted started..."
 sleep 10
 chromium-browser http://localhost:8080/ &
