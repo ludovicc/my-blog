@@ -104,6 +104,14 @@ Writer monad: [(4)][4]
 References:
 ===========
 
+* [1]
+* [2]
+* [3]
+* [4]
+* [5]
+* [6]
+* [7]
+
 [1]: http://thedet.wordpress.com/2012/04/28/functors-monads-applicatives-can-be-so-simple/ "Functors, Monads, Applicatives – can be so simple"
 
 [2]: http://thedet.wordpress.com/2012/05/04/functors-monads-applicatives-different-implementations/ "Functors, Monads, Applicatives – different implementations"
