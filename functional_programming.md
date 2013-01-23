@@ -104,13 +104,13 @@ Writer monad: [(4)][4]
 References:
 ===========
 
-* [1]
-* [2]
-* [3]
-* [4]
-* [5]
-* [6]
-* [7]
+* [Functors, Monads, Applicatives – can be so simple][1]
+* [Functors, Monads, Applicatives – different implementations][2]
+* [Functors, Monads, Applicatives – playing with map (Functor)][3]
+* [Functors, Monads, Applicatives – taking Monad apart][4]
+* [Functors, Applicative Functors, and Monads aren't that scary][5]
+* [Haskell Typeclassopedia][6]
+* [Case study of fib.zip(fib.tail) by Tony Morris][7]
 
 [1]: http://thedet.wordpress.com/2012/04/28/functors-monads-applicatives-can-be-so-simple/ "Functors, Monads, Applicatives – can be so simple"
 
