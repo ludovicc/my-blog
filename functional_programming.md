@@ -2,20 +2,40 @@ title: Functional programming
 
 ## Functional programming
 
-Let's start with some definitions: [(1)][1][(5)][5][(7)][7]
+Let's start with some definitions: [(1)][1][(5)][5][(8)][8]
 
-**Covariant Functor** -- defines the operation commonly known as map or fmap:
+**Covariant Functor** — defines the operation commonly known as map or fmap.
+
     map ( A=>B ) => ( C[A]=>C[B] )   or   map C[A] => (A=>B) => C[B]
 
-**Monad:**
+**Monad:** — defines the operation commonly known as bind, flatMap or =<<.
+
     flatMap ( A=>C[B] ) => ( C[A]=>C[B] )
-Applicative functors also define an identity operation
     insert A => C[A]
 
-**Applicative Functor** -- defines the operation commonly known as apply or <*>:
+Monads also define an identity operation, insert
+
+**Applicative Functor** — defines the operation commonly known as apply or <*>.
+
     apply ( C[A=>B] ) => ( C[A]=>C[B] )
-Applicative functors also define an identity operation
     insert A => C[A]
+
+Applicative functors also define an identity operation, insert
+
+**Exponential Functors** — defines the operation commonly known as xmap. Also known as invariant functors.
+
+    xmap ( (A => B, B => A) ) => ( F[A] => F[B] )
+
+**Contravariant Functor** — defines the operation commonly known as contramap.
+
+    contramap ( B=>A ) => ( C[A]=>C[B] )
+
+**Comonad** — defines the operation commonly known as extend, coflatMap or <<=.
+
+    coflatMap ( F[A] => B ) => ( F[A] => F[B] )
+    extract F[A] => A
+
+Comonads also define an identity operation, extract
 
 Implementation details:
 =======================
@@ -24,7 +44,7 @@ Let's assume that we have
 
     class Container[T](val value:T)
 
-// Functor [(1)][1][(2)][2][(3)][3]
+// Covariant Functor [(1)][1][(2)][2][(3)][3]
 
     def map[A,B] ( rawfunc:A=>B ) = (a:Container[A]) => new Container( rawfunc(a.value) )
 
@@ -48,7 +68,7 @@ or
 or [(5)][5]
 
     trait Functor[T[_]] {
-      def fmap[A,B](f:A=>B)(ta:T[A]):T[B]
+      def fmap[A,B](f: A=>B)(ta: T[A]): T[B]
     }
 
 // Monad [(3)][3][(4)][4]
@@ -90,6 +110,12 @@ or [(7)][7]
       } yield ff(aa)
 
 `fib.zip(fib.tail)` can be rewritten as `zip <*> tail`
+
+// Exponential functor [(8)][8]
+
+    trait Exponential[F[_]] {
+      def xmap[A, B](f: (A => B, B => A)): F[A] => F[B]
+    }
 
 Concrete use:
 =============
