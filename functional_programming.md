@@ -117,6 +117,19 @@ or [(7)][7]
       def xmap[A, B](f: (A => B, B => A)): F[A] => F[B]
     }
 
+// Contravariant functor [(8)][8]
+
+    trait Contravariant[F[_]] {
+      def contramap[A, B](f: B => A): F[A] => F[B]
+    }
+
+// Comonad [(8)][8]
+
+    trait Comonad[F[_]] {
+      def coflatMap[A, B](f: F[A] => B): F[A] => F[B]
+      def extract[A]: F[A] => A
+    }
+
 Concrete use:
 =============
 
