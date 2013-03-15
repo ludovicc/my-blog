@@ -2,17 +2,20 @@ title: Functional programming
 
 ## Functional programming
 
-Let's start with some definitions: [(1)][1][(5)][5]
+Let's start with some definitions: [(1)][1][(5)][5][(7)][7]
 
-**Functor:**
+**Covariant Functor** -- defines the operation commonly known as map or fmap:
     map ( A=>B ) => ( C[A]=>C[B] )   or   map C[A] => (A=>B) => C[B]
 
 **Monad:**
     flatMap ( A=>C[B] ) => ( C[A]=>C[B] )
+Applicative functors also define an identity operation
+    insert A => C[A]
 
-**Applicative:**
+**Applicative Functor** -- defines the operation commonly known as apply or <*>:
     apply ( C[A=>B] ) => ( C[A]=>C[B] )
-
+Applicative functors also define an identity operation
+    insert A => C[A]
 
 Implementation details:
 =======================
@@ -74,7 +77,7 @@ or [(5)][5]
 or [(5)][5]
 
     trait Applicative[T[_]] extends Functor[T] {
-      def pure[A](a:A):T[A]
+      def pure[A](a:A):T[A] // or identity
       def <*>[A,B](tf:T[A=>B])(ta:T[A]):T[B] // or apply
     }
 
@@ -126,3 +129,4 @@ References:
 
 [7]: https://groups.google.com/forum/#!msg/scala-user/uh5w6N2eAHY/3Shf1295VpYJ "Case study of fib.zip(fib.tail) by Tony Morris"
 
+[8]: http://blog.tmorris.net/posts/functors-and-things-using-scala/index.html "Functors and things using Scala"
